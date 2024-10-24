@@ -80,13 +80,13 @@ def main(args):
     example['hypo_fc_docs'] = outputs
     data.append(example)
 
-  with open(args.output_json, "w", encoding="utf-8") as output_file:
-    json.dump(data, output_file, ensure_ascii=False, indent=4)
+  with open(args.json_output, "w", encoding="utf-8") as output_json:
+    json.dump(data, output_json, ensure_ascii=False, indent=4)
     
 if __name__ == "__main__":
   parser = argparse.ArgumentParser()
   parser.add_argument('-i', '--target_data', default='dev.json')
-  parser.add_argument('-o', '--output_json', default='hyde_fc.json')
+  parser.add_argument('-o', '--json_output', default='hyde_fc.json')
   parser.add_argument('-m','--model', default="meta-llama/Meta-Llama-3.1-70B-Instruct")
   args = parser.parse_args()
   main(args)
