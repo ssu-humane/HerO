@@ -20,3 +20,13 @@ python question_generation.py --reference_corpus "train.json" --top_k_target_kno
 ```
 ### Verdict prediction
 
+
+### Citation
+```
+@article{yoon2024hero,
+  title={HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims},
+  author={Yoon, Yejun and Jung, Jaeyoon and Yoon, Seunghyun and Park, Kunwoo},
+  journal={arXiv preprint arXiv:2410.12377},
+  year={2024}
+}
+```
