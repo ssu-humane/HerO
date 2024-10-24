@@ -5,7 +5,7 @@
 
 ### Hypothetical fact-checking documents (HyDE-FC) generation
 ```python3
-python hyde_fc_generation.py --target_data "dev.json" --output_json "dev_hyde_fc.json"
+python hyde_fc_generation.py --target_data "dev.json" --json_output "dev_hyde_fc.json"
 ```
 
 ### Evidence retrieval and reranking
