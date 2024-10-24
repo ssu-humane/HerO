@@ -1,15 +1,15 @@
 from vllm import LLM, SamplingParams
 import json
 import torch
-import numpy as np
 import time
 import argparse
 import tqdm
 
 class VLLMGenerator:
     def __init__(self, model_name, n=8, max_tokens=512, temperature=0.7, top_p=1.0, frequency_penalty=0.0, presence_penalty=0.0, stop=['\n\n\n'], wait_till_success=False):
+        self.device_count = torch.cuda.device_count()
         self.llm = LLM(model=model_name,
-            tensor_parallel_size=2,
+            tensor_parallel_size=self.device_count,
             max_model_len=4096,
             gpu_memory_utilization=0.95,
             enforce_eager=True,
