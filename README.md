@@ -9,8 +9,9 @@ This repository provides the code for our paper, ["HerO at AVeriTeC: The Herd of
 
 ## Method: HerO
 We present HerO, a herd of open large language models for verifying real-world claims.
-<p align="center"><img src="https://github.com/user-attachments/assets/a2ffe358-68d3-49e3-8944-1b5eddd2c36a" width="900" height="400"></p>
+<p align="center"><img src="https://github.com/user-attachments/assets/6cc0d0ea-78ec-4b84-b9cc-f905916dd972" width="900" height="400"></p>
 This figure illustrates the inference pipeline of our system. We configure three modules using only open LLMs to fact-check real-world claims in the AVeriTeC dataset: evidence retrieval, question generation, and veracity prediction.
+
 
 #### The main features of the three modules
 - Evidence retrieval: By leveraging [HyDE](https://aclanthology.org/2023.acl-long.99/), we expand the query by generating hypothetical fact-checking documents that rely on the LLM's parametric knowledge. We retrieve 2-stage using BM25 and [SFR-Embedding-2_R](https://huggingface.co/Salesforce/SFR-Embedding-2_R).
@@ -35,7 +36,8 @@ python reranking.py --target_data "dev_retrieval_top_k.json" --json_output "dev_
 python question_generation.py --reference_corpus "train.json" --top_k_target_knowledge "dev_reranking_top_k.json" --output_questions "dev_top_k_qa.json"
 ```
 ### Verdict prediction
-
+```python3
+```
 
 ### Citation
 ```
