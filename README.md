@@ -19,6 +19,8 @@ This figure illustrates the inference pipeline of our system. We configure three
 - Veracity prediction: We fully fine-tune the LLM to generate justifications and verdicts using the training set of the AVeriTeC dataset.
 
 ## Code for replication
+We use [vllm](https://github.com/vllm-project/vllm) to infer from LLMs and [axolotl](https://github.com/axolotl-ai-cloud/axolotl) to train LLMs.
+
 
 ### Hypothetical fact-checking documents (HyDE-FC) generation
 ```python3
