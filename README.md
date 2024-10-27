@@ -27,7 +27,7 @@ python hyde_fc_generation.py --target_data "dev.json" --json_output "dev_hyde_fc
 
 ### Evidence retrieval and reranking
 ```python3
-ptyhon retrieval.py --knowledge_store_dir "knowledge_store/dev" --target_data "dev_hyde_fc.json" --json_output "dev_retrieval_top_k.json"
+python retrieval.py --knowledge_store_dir "knowledge_store/dev" --target_data "dev_hyde_fc.json" --json_output "dev_retrieval_top_k.json"
 
 python reranking.py --target_data "dev_retrieval_top_k.json" --json_output "dev_reranking_top_k.json"
 ```
