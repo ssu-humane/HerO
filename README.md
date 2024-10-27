@@ -1,9 +1,18 @@
 # HerO
 
-![pipeline](https://github.com/user-attachments/assets/1ca414c5-123e-44aa-afdc-784b87541f20)
+This repository provides the code for our paper, "HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims" to be published at Seventh Workshop on Fact Extraction and VERification (FEVER), 2024. (co-located with EMNLP)
+
+## AVERITEC shared task [[**LINK**]](https://fever.ai/task.html)
+- Given a claim and its metadata, the systems must retrieve evidence that supports and/or refutes the claim, either from the Web or from the document collection provided by the organizers.
+- Using this evidence, label the claim as Supported, Refuted given the evidence, Not Enough Evidence (if there isn't sufficient evidence to either support or refute it) or Conflicting Evidence/Cherry-picking (if the claim has both supporting and refuting evidence).
 
 
-# Code for replication
+## Method: HerO
+We present HerO, a herd of open large language models for verifying real-world claims.
+<p align="center"><img src="https://github.com/user-attachments/assets/a2ffe358-68d3-49e3-8944-1b5eddd2c36a" width="900" height="400"></p>
+This figure illustrates the inference pipeline of our system. We only employ open LLMs.
+
+## Code for replication
 
 ### Hypothetical fact-checking documents (HyDE-FC) generation
 ```python3
