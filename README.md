@@ -37,7 +37,7 @@ python reranking.py --target_data "dev_retrieval_top_k.json" --json_output "dev_
 ```python3
 python question_generation.py --reference_corpus "train.json" --top_k_target_knowledge "dev_reranking_top_k.json" --output_questions "dev_top_k_qa.json"
 ```
-### Verdict prediction
+### Veracity prediction
 ```python3
 ```
 
