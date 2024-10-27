@@ -1,8 +1,8 @@
-# HerO
+# HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims
 
-This repository provides the code for our paper, "HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims" to be published at Seventh Workshop on Fact Extraction and VERification (FEVER), 2024. (co-located with EMNLP)
+This repository provides the code for our paper, ["HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims"](https://arxiv.org/abs/2410.12377) to be published at Seventh Workshop on Fact Extraction and VERification (FEVER), 2024. (co-located with EMNLP)
 
-## AVERITEC shared task [[**LINK**]](https://fever.ai/task.html)
+## [AVeriTeC shared task](https://fever.ai/task.html)
 - Given a claim and its metadata, the systems must retrieve evidence that supports and/or refutes the claim, either from the Web or from the document collection provided by the organizers.
 - Using this evidence, label the claim as Supported, Refuted given the evidence, Not Enough Evidence (if there isn't sufficient evidence to either support or refute it) or Conflicting Evidence/Cherry-picking (if the claim has both supporting and refuting evidence).
 
@@ -10,7 +10,12 @@ This repository provides the code for our paper, "HerO at AVeriTeC: The Herd of 
 ## Method: HerO
 We present HerO, a herd of open large language models for verifying real-world claims.
 <p align="center"><img src="https://github.com/user-attachments/assets/a2ffe358-68d3-49e3-8944-1b5eddd2c36a" width="900" height="400"></p>
-This figure illustrates the inference pipeline of our system. We only employ open LLMs.
+This figure illustrates the inference pipeline of our system. We configure three modules using only open LLMs to fact-check real-world claims in the AVeriTeC dataset: evidence retrieval, question generation, and veracity prediction.
+
+#### The main features of the three modules
+- Evidence retrieval: By leveraging [HyDE](https://aclanthology.org/2023.acl-long.99/), we expand the search query by generating hypothetical fact-checking documents that rely on the LLM's parametric knowledge. We retrieve 2-stage using BM25 and [SFR-Embedding-2_R](https://huggingface.co/Salesforce/SFR-Embedding-2_R).
+- Question generation: We add a claim at LLM input.
+- Veracity prediction: We fully fine-tune the LLM to generate justifications and verdicts using the training set of the AVeriTeC dataset.
 
 ## Code for replication
 
