@@ -93,7 +93,7 @@ if __name__ == "__main__":
   parser = argparse.ArgumentParser()
   parser.add_argument('--model', default="meta-llama/Meta-Llama-3-8B-Instruct")
   parser.add_argument("-i", "--target_data", default="llm_dev.json")
-  parser.add_argument("-o", "--output_file", default="data_store/dev_veracity_prediction_llm.json")
+  parser.add_argument("-o", "--output_file", default="dev_veracity_prediction.json")
   args = parser.parse_args()    
   
   main(args)
