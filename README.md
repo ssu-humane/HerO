@@ -39,6 +39,7 @@ python question_generation.py --reference_corpus "train.json" --top_k_target_kno
 ```
 ### Veracity prediction
 ```python3
+python veracity_prediction --target_data "dev_top_k_qa.json" --output_file "dev_veracity_prediction.json"
 ```
 
 ### Citation
