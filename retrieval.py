@@ -96,14 +96,14 @@ if __name__ == "__main__":
     parser.add_argument(
         "--target_data",
         type=str,
-        default="hyde_fc.json",
+        default="data_store/hyde_fc.json",
         help="The path of the file that stores the claim.",
     )
     parser.add_argument(
         "-o",
         "--json_output",
         type=str,
-        default="dev_retrieval_top_k.json",
+        default="data_store/dev_retrieval_top_k.json",
         help="The output dir for JSON files to save the top 100 sentences for each claim.",
     )
     parser.add_argument(

@@ -85,8 +85,8 @@ def main(args):
     
 if __name__ == "__main__":
   parser = argparse.ArgumentParser()
-  parser.add_argument('-i', '--target_data', default='dev.json')
-  parser.add_argument('-o', '--json_output', default='hyde_fc.json')
+  parser.add_argument('-i', '--target_data', default='data_store/averitec/dev.json')
+  parser.add_argument('-o', '--json_output', default='data_store/hyde_fc.json')
   parser.add_argument('-m','--model', default="meta-llama/Meta-Llama-3.1-70B-Instruct")
   args = parser.parse_args()
   main(args)

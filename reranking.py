@@ -114,10 +114,10 @@ def main(args):
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser()
-  parser.add_argument("--target_data", default="dev_retrieval_top_k.json")
+  parser.add_argument("--target_data", default="data_store/dev_retrieval_top_k.json")
   parser.add_argument("--retrieved_top_k", type=int, default=10000)
   parser.add_argument("--top_k", type=int, default=10)
-  parser.add_argument("-o", "--json_output", type=str, default="dev_reranking_top_k.json")
+  parser.add_argument("-o", "--json_output", type=str, default="data_store/dev_reranking_top_k.json")
   parser.add_argument("--batch_size", type=int, default=16)
   parser.add_argument("-s", "--start", type=int, default=0)
   parser.add_argument("-e", "--end", type=int, default=-1)

@@ -144,17 +144,17 @@ def main(args):
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description="Use a prompt to generate questions that could be answered by top-k retrieved evidence. Output generated questions.")
   parser.add_argument("--model", type=str, default="meta-llama/Meta-Llama-3-8B-Instruct")
-  parser.add_argument("--reference_corpus", default="data/original/train.json")
+  parser.add_argument("--reference_corpus", default="data_store/averitec/train.json")
   parser.add_argument(
     "-i",
     "--top_k_target_knowledge",
-    default="dev_reranking_top_k.json",
+    default="data_store/dev_reranking_top_k.json",
     help="Directory where the sentences for the scraped data is saved.",
   )
   parser.add_argument(
     "-o",
     "--output_questions",
-    default="dev_top_k_qa.json",
+    default="data_store/dev_top_k_qa.json",
     help="Directory where the sentences for the scraped data is saved.",
   )
   parser.add_argument(

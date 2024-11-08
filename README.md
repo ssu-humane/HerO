@@ -23,9 +23,9 @@ We use Finetuned 8b LLM for question generation and 70b LLM for veracity predict
 
 - [humane-lab/AVeriTeC-HerO](https://huggingface.co/datasets/humane-lab/AVeriTeC-HerO) is our training dataset for the veraity prediction and justification generation model. We modify the [AVeriTeC dataset](https://huggingface.co/chenxwh/AVeriTeC) to be used for instruction training.
 
-- [humane-lab/Meta-Llama-3.1-8B-HerO](https://huggingface.co/humane-lab/Meta-Llama-3.1-8B-HerO) is our fine-tuned 8b model for veracity prediction and justification generation. We use Meta-Llama-3.1-8B as our base model.
+- [humane-lab/Meta-Llama-3.1-8B-HerO](https://huggingface.co/humane-lab/Meta-Llama-3.1-8B-HerO) is our fine-tuned 8b model for veracity prediction and justification generation. We use Meta-Llama-3.1-8B for base model.
 
-- [humane-lab/Meta-Llama-3.1-70B-HerO](https://huggingface.co/humane-lab/Meta-Llama-3.1-70B-HerO) is our fine-tuned 70b model for veracity prediction and justification generation. We use Meta-Llama-3.1-70B as our base model.
+- [humane-lab/Meta-Llama-3.1-70B-HerO](https://huggingface.co/humane-lab/Meta-Llama-3.1-70B-HerO) is our fine-tuned 70b model for veracity prediction and justification generation. We use Meta-Llama-3.1-70B for base model.
 
 You can use our provided models or train your own models using the training dataset we provide.
 
@@ -34,7 +34,17 @@ We use [vllm](https://github.com/vllm-project/vllm) to infer from LLMs and [axol
 
 Our repository use gated models like Llama, so you might need a authentication token of huggingface.
 
-We also provide the result file of each steps in [data_store/baseline]() directory.
+We also provide the result file of each steps in [data_store/baseline](https://github.com/ssu-humane/HerO/tree/main/data_store/baseline) directory.
+
+### Installation
+```bash
+git clone https://github.com/ssu-humane/HerO.git
+cd HerO
+pip install -r requirements.txt
+```
+
+### Data Preparation
+Download the AVeriTeC dataset and place it in the `data_store/averitec` directory. More details can be found in the [data_store/averitec/README.md](https://github.com/ssu-humane/HerO/tree/main/data_store/averitec)
 
 ### Evidence Retrieval
 #### Hypothetical fact-checking documents (HyDE-FC) generation
@@ -53,14 +63,14 @@ python reranking.py --target_data "data_store/dev_retrieval_top_k.json" --json_o
 
 ### Question generation
 ```python3
-python question_generation.py --reference_corpus "data_store/averitec/train.json" --top_k_target_knowledge "data_store/dev_reranking_top_k.json" --output_questions "data_store/dev_top_k_qa.json" --model "model_path_or_name"
+python question_generation.py --reference_corpus "data_store/averitec/train.json" --top_k_target_knowledge "data_store/dev_reranking_top_k.json" --output_questions "data_store/dev_top_k_qa.json" --model "meta-llama/Meta-Llama-3-8B-Instruct"
 ```
 
 > Generate questions for the dev set (8b LLM) takes about 25 minutes in two H100.
 
 ### Veracity prediction
 ```python3
-python veracity_prediction.py --target_data "data_store/dev_top_k_qa.json" --output_file "data_store/dev_veracity_prediction.json" --model "model_path_or_name"
+python veracity_prediction.py --target_data "data_store/dev_top_k_qa.json" --output_file "data_store/dev_veracity_prediction.json" --model "humane-lab/Meta-Llama-3.1-70B-HerO"
 ```
 
 > Veracity prediction for the dev set (70b Finetuned LLM) takes about 12 minutes in two H100.

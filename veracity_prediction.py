@@ -104,9 +104,9 @@ def main(args):
   
 if __name__ == "__main__":
   parser = argparse.ArgumentParser()
-  parser.add_argument('--model', default="meta-llama/Meta-Llama-3-8B-Instruct")
-  parser.add_argument("-i", "--target_data", default="llm_dev.json")
-  parser.add_argument("-o", "--output_file", default="dev_veracity_prediction.json")
+  parser.add_argument('--model', default="humane-lab/Meta-Llama-3.1-70B-HerO")
+  parser.add_argument("-i", "--target_data", default="data_store/averitec/dev.json")
+  parser.add_argument("-o", "--output_file", default="data_store/dev_veracity_prediction.json")
   args = parser.parse_args()    
   
   main(args)
