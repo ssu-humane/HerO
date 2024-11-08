@@ -44,12 +44,9 @@ def select_top_k(claim, results, top_k):
         continue
       
       if claim in sentence:
-        dup_check.add(sentence)
-        continue
-          
-      if len(claim) / len(sentence) > 0.92:
-        dup_check.add(sentence)
-        continue
+        if len(claim) / len(sentence) > 0.92:
+          dup_check.add(sentence)
+          continue 
       
       top_k_sentences_urls.append({
         'sentence': results[i]['sentence'],
