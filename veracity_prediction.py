@@ -59,22 +59,35 @@ def main(args):
     
     input_ids = tokenizer.apply_chat_template(messages, tokenize=False)
 
-    output = llm.generate(input_ids, sampling_params)
-    
-    output = output[0].outputs[0].text.strip()
+    label = None
+    while label == None:
+      output = llm.generate(input_ids, sampling_params)
+      
+      output = output[0].outputs[0].text.strip()
 
-    if "Not Enough Evidence" in output:
-      label = "Not Enough Evidence"
-    elif "Conflicting Evidence/Cherrypicking" in output or "Cherrypicking" in output or "Conflicting Evidence" in output:
-      label = "Conflicting Evidence/Cherrypicking"
-    elif "Supported" in output or "supported" in output:
-      label = "Supported"
-    elif "Refuted" in output or "refuted" in output:
-      label = "Refuted"
-    else:
-      label = "Not Enough Evidence"
-      print("Error: could not find label in output.")
-      print(output)
+      if "Not Enough Evidence" in output:
+        label = "Not Enough Evidence"
+      elif "Conflicting Evidence/Cherrypicking" in output or "Cherrypicking" in output or "Conflicting Evidence" in output:
+        label = "Conflicting Evidence/Cherrypicking"
+      elif "Supported" in output or "supported" in output:
+        label = "Supported"
+      elif "Refuted" in output or "refuted" in output:
+        label = "Refuted"
+      else:
+        label = None
+        sampling_params = SamplingParams(
+          temperature=0.9,
+          top_p=0.7,
+          top_k=2,
+          early_stopping=False,
+          skip_special_tokens=False,
+          max_tokens=512,
+          stop=['<|endoftext|>', '</s>', '<|im_end|>', '[INST]', '[/INST]','<|eot_id|>','<|end|>']
+        )
+        print("Error: could not find label in output.")
+        print(output)
+
+    print(output)
 
     json_data = {
       "claim_id": example["claim_id"],

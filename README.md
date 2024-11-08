@@ -18,28 +18,56 @@ This figure illustrates the inference pipeline of our system. We configure three
 - Question generation: We add a claim at LLM input.
 - Veracity prediction: We fully fine-tune the LLM to generate justifications and verdicts using the training set of the AVeriTeC dataset.
 
+## Model for replication
+We use Finetuned 8b LLM for question generation and 70b LLM for veracity prediction. models and datasets are available at huggingface 🤗
+
+- [humane-lab/AVeriTeC-HerO](https://huggingface.co/datasets/humane-lab/AVeriTeC-HerO) is our training dataset for the veraity prediction and justification generation model. We modify the [AVeriTeC dataset](https://huggingface.co/chenxwh/AVeriTeC) to be used for instruction training.
+
+- [humane-lab/Meta-Llama-3.1-8B-HerO](https://huggingface.co/humane-lab/Meta-Llama-3.1-8B-HerO) is our fine-tuned 8b model for veracity prediction and justification generation. We use Meta-Llama-3.1-8B as our base model.
+
+- [humane-lab/Meta-Llama-3.1-70B-HerO](https://huggingface.co/humane-lab/Meta-Llama-3.1-70B-HerO) is our fine-tuned 70b model for veracity prediction and justification generation. We use Meta-Llama-3.1-70B as our base model.
+
+You can use our provided models or train your own models using the training dataset we provide.
+
 ## Code for replication
 We use [vllm](https://github.com/vllm-project/vllm) to infer from LLMs and [axolotl](https://github.com/axolotl-ai-cloud/axolotl) to train LLMs.
 
+Our repository use gated models like Llama, so you might need a authentication token of huggingface.
 
-### Hypothetical fact-checking documents (HyDE-FC) generation
+We also provide the result file of each steps in [data_store/baseline]() directory.
+
+### Evidence Retrieval
+#### Hypothetical fact-checking documents (HyDE-FC) generation
 ```python3
-python hyde_fc_generation.py --target_data "dev.json" --json_output "dev_hyde_fc.json"
+python hyde_fc_generation.py --target_data "data_store/averitec/dev.json" --json_output "data_store/dev_hyde_fc.json"
 ```
 
-### Evidence retrieval and reranking
+#### Evidence retrieval and reranking
 ```python3
-python retrieval.py --knowledge_store_dir "knowledge_store/dev" --target_data "dev_hyde_fc.json" --json_output "dev_retrieval_top_k.json"
+python retrieval.py --knowledge_store_dir "knowledge_store/dev" --target_data "data_store/dev_hyde_fc.json" --json_output "data_store/dev_retrieval_top_k.json"
 
-python reranking.py --target_data "dev_retrieval_top_k.json" --json_output "dev_reranking_top_k.json"
+python reranking.py --target_data "data_store/dev_retrieval_top_k.json" --json_output "data_store/dev_reranking_top_k.json"
 ```
+
+> HyDE-FC generation, evidence retrieval and reranking takes about 6 hours in two H100.
+
 ### Question generation
 ```python3
-python question_generation.py --reference_corpus "train.json" --top_k_target_knowledge "dev_reranking_top_k.json" --output_questions "dev_top_k_qa.json"
+python question_generation.py --reference_corpus "data_store/averitec/train.json" --top_k_target_knowledge "data_store/dev_reranking_top_k.json" --output_questions "data_store/dev_top_k_qa.json" --model "model_path_or_name"
 ```
+
+> Generate questions for the dev set (8b LLM) takes about 25 minutes in two H100.
+
 ### Veracity prediction
 ```python3
-python veracity_prediction --target_data "dev_top_k_qa.json" --output_file "dev_veracity_prediction.json"
+python veracity_prediction.py --target_data "data_store/dev_top_k_qa.json" --output_file "data_store/dev_veracity_prediction.json" --model "model_path_or_name"
+```
+
+> Veracity prediction for the dev set (70b Finetuned LLM) takes about 12 minutes in two H100.
+
+### Evaluation
+```python3
+python averitec_evaluation.py --prediction_file "data_store/dev_veracity_prediction.json" --reference_file "data_store/averitec/dev.json"
 ```
 
 ### Citation
