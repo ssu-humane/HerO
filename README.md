@@ -1,6 +1,6 @@
 # HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims
 
-This repository provides the code for :boom:HerO:boom:, the runner-up :runner: for the AveriTeC shared task. 
+This repository provides the code for 🌟:HerO🌟:, the runner-up :runner: for the AveriTeC shared task. 
 
 The system description paper is published in the proceedings of the 7th FEVER workshop (co-located with EMNLP 2024) [[paper]](https://aclanthology.org/2024.fever-1.15/).
 
