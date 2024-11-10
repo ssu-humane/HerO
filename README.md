@@ -55,7 +55,7 @@ python retrieval.py --knowledge_store_dir "knowledge_store/dev" --target_data "d
 python reranking.py --target_data "data_store/dev_retrieval_top_k.json" --json_output "data_store/dev_reranking_top_k.json"
 ```
 
-> HyDE-FC generation, evidence retrieval and reranking takes about 6 hours in two H100.
+> The evidence retrieval pipeline takes about 6 hours in two H100.
 
 ### Question generation
 ```python3
