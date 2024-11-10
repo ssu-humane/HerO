@@ -10,7 +10,7 @@ This repository provides the code for our paper, titled ["HerO at AVeriTeC: The 
 ## Method: HerO
 
 - HerO, the herd of open large language models for real-world claims, is our pipelined system for verifying real-world claims.
-- Our system achieved 2nd place in the shared task! (the best system among those using open llms)
+- :trophy: Our system achieved 2nd place in the shared task! (the best system among those using open llms)
 <p align="center"><img src="https://github.com/user-attachments/assets/6cc0d0ea-78ec-4b84-b9cc-f905916dd972" width="900" height="400"></p>
 - The above figure illustrates our system's inference pipeline. We configure three modules using only open LLMs to fact-check real-world claims in the AVeriTeC dataset: evidence retrieval, question generation, and veracity prediction.
 
