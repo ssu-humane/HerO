@@ -20,6 +20,8 @@ The system description paper is published in the proceedings of the 7th FEVER wo
   + Question generation: We use an LLM to generate a verifying question for an answer candidate. We improve the baseline prompt by using the claim as an additional context.
   + Veracity prediction: We fully fine-tune an LLM to generate justifications and verdicts.
 
+## How to Run
+
 ### Installation
 ```bash
 git clone https://github.com/ssu-humane/HerO.git
@@ -38,16 +40,15 @@ We use the 8b model for question generation and the 70b model for veracity predi
 ### Data Preparation
 Download the AVeriTeC dataset and place it in the `data_store/averitec` directory. More details can be found in the [data_store/averitec/README.md](https://github.com/ssu-humane/HerO/tree/main/data_store/averitec)
 
-### How to Run
-#### Evidence retrieval
+### Evidence retrieval
 
-**Hypothetical fact-checking documents (HyDE-FC)** 
+#### Hypothetical fact-checking documents (HyDE-FC)
 
 ```python3
 python hyde_fc_generation.py --target_data "data_store/averitec/dev.json" --json_output "data_store/dev_hyde_fc.json"
 ```
 
-**Retrieval and reranking** 
+#### Retrieval and reranking
 
 ```python3
 python retrieval.py --knowledge_store_dir "knowledge_store/dev" --target_data "data_store/dev_hyde_fc.json" --json_output "data_store/dev_retrieval_top_k.json"
@@ -56,26 +57,26 @@ python reranking.py --target_data "data_store/dev_retrieval_top_k.json" --json_o
 
 > HyDE-FC generation, evidence retrieval and reranking takes about 6 hours in two H100.
 
-#### Question generation
+### Question generation
 ```python3
 python question_generation.py --reference_corpus "data_store/averitec/train.json" --top_k_target_knowledge "data_store/dev_reranking_top_k.json" --output_questions "data_store/dev_top_k_qa.json" --model "meta-llama/Meta-Llama-3-8B-Instruct"
 ```
 
 > Generate questions for the dev set (8b LLM) takes about 25 minutes in two H100.
 
-#### Veracity prediction
+### Veracity prediction
 ```python3
 python veracity_prediction.py --target_data "data_store/dev_top_k_qa.json" --output_file "data_store/dev_veracity_prediction.json" --model "humane-lab/Meta-Llama-3.1-70B-HerO"
 ```
 
 > Veracity prediction for the dev set (70b Finetuned LLM) takes about 12 minutes in two H100.
 
-#### Evaluation
+### Evaluation
 ```python3
 python averitec_evaluation.py --prediction_file "data_store/dev_veracity_prediction.json" --reference_file "data_store/averitec/dev.json"
 ```
 
-### Attribution
+## Attribution
 
 The code and dataset are shared under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0).
 ```
