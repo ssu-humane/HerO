@@ -1,40 +1,41 @@
 # HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims
 
-This repository provides the code for our paper, ["HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims"](https://arxiv.org/abs/2410.12377) to be published at Seventh Workshop on Fact Extraction and VERification (FEVER), 2024. (co-located with EMNLP)
+This repository provides the code for our paper titled ["HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims"](https://aclanthology.org/2024.fever-1.15/).
 
-## [AVeriTeC shared task](https://fever.ai/task.html)
-- Given a claim and its metadata, the systems must retrieve evidence that supports and/or refutes the claim, either from the Web or from the document collection provided by the organizers.
-- Using this evidence, label the claim as Supported, Refuted given the evidence, Not Enough Evidence (if there isn't sufficient evidence to either support or refute it) or Conflicting Evidence/Cherry-picking (if the claim has both supporting and refuting evidence).
+## Task: AVeriTeC
 
+- The AVeriTeC task is to verify a real-world claim by retrieving evidence from the web. Given a claim and its metadata, a system needs to retrieve evidence that supports and/or refutes the claim, either from the Web or from the document collection provided along with the dataset.
+- This code is for our fact-checking pipeline that utilizes open large language models for the shared task hosted by the 7th FEVER workshop (co-located with EMNLP). For more details about the task and dataset, please refer to [the paper](https://proceedings.neurips.cc/paper_files/paper/2023/hash/cd86a30526cd1aff61d6f89f107634e4-Abstract-Datasets_and_Benchmarks.html) or [the website](https://fever.ai/task.html).
 
 ## Method: HerO
+
 We present HerO, a herd of open large language models for verifying real-world claims.
 <p align="center"><img src="https://github.com/user-attachments/assets/6cc0d0ea-78ec-4b84-b9cc-f905916dd972" width="900" height="400"></p>
 This figure illustrates the inference pipeline of our system. We configure three modules using only open LLMs to fact-check real-world claims in the AVeriTeC dataset: evidence retrieval, question generation, and veracity prediction.
 
 
 #### The main features of the three modules
-- Evidence retrieval: By leveraging [HyDE](https://aclanthology.org/2023.acl-long.99/), we expand the query by generating hypothetical fact-checking documents that rely on the LLM's parametric knowledge. We retrieve 2-stage using BM25 and [SFR-Embedding-2_R](https://huggingface.co/Salesforce/SFR-Embedding-2_R).
-- Question generation: We add a claim at LLM input.
-- Veracity prediction: We fully fine-tune the LLM to generate justifications and verdicts using the training set of the AVeriTeC dataset.
+
+- Evidence retrieval: We implement a 2-stage retrieval pipeline using BM25 and [SFR-Embedding-2_R](https://huggingface.co/Salesforce/SFR-Embedding-2_R). We expand the query by generating hypothetical fact-checking documents that rely on the LLM's parametric knowledge.
+- Question generation: We use an LLM to generate a verifying question for an answer candidate. We improve the baseline prompt by using the claim as an additional context.
+- Veracity prediction: We fully fine-tune an LLM to generate justifications and verdicts.
 
 ## Model for replication
-We use Finetuned 8b LLM for question generation and 70b LLM for veracity prediction. models and datasets are available at huggingface 🤗
+We use the 8b model for question generation and the 70b model for veracity prediction. We make the model checkpoints and datasets available at Huggingface 🤗
 
 - [humane-lab/AVeriTeC-HerO](https://huggingface.co/datasets/humane-lab/AVeriTeC-HerO) is our training dataset for the veraity prediction and justification generation model. We modify the [AVeriTeC dataset](https://huggingface.co/chenxwh/AVeriTeC) to be used for instruction training.
 
-- [humane-lab/Meta-Llama-3.1-8B-HerO](https://huggingface.co/humane-lab/Meta-Llama-3.1-8B-HerO) is our fine-tuned 8b model for veracity prediction and justification generation. We use Meta-Llama-3.1-8B for base model.
+- [humane-lab/Meta-Llama-3.1-8B-HerO](https://huggingface.co/humane-lab/Meta-Llama-3.1-8B-HerO) is our fine-tuned 8b model for veracity prediction and justification generation. We use Meta-Llama-3.1-8B for the base model.
 
-- [humane-lab/Meta-Llama-3.1-70B-HerO](https://huggingface.co/humane-lab/Meta-Llama-3.1-70B-HerO) is our fine-tuned 70b model for veracity prediction and justification generation. We use Meta-Llama-3.1-70B for base model.
+- [humane-lab/Meta-Llama-3.1-70B-HerO](https://huggingface.co/humane-lab/Meta-Llama-3.1-70B-HerO) is our fine-tuned 70b model for veracity prediction and justification generation. We use Meta-Llama-3.1-70B as the base model.
 
-You can use our provided models or train your own models using the training dataset we provide.
 
 ## Code for replication
 We use [vllm](https://github.com/vllm-project/vllm) to infer from LLMs and [axolotl](https://github.com/axolotl-ai-cloud/axolotl) to train LLMs.
 
-Our repository use gated models like Llama, so you might need a authentication token of huggingface.
+Our repository uses gated models like Llama so that you might need an authentication token of huggingface.
 
-We also provide the result file of each steps in [data_store/baseline](https://github.com/ssu-humane/HerO/tree/main/data_store/baseline) directory.
+We also provide the result file of each step in the [data_store/baseline](https://github.com/ssu-humane/HerO/tree/main/data_store/baseline) directory.
 
 ### Installation
 ```bash
@@ -81,11 +82,20 @@ python averitec_evaluation.py --prediction_file "data_store/dev_veracity_predict
 ```
 
 ### Citation
+
+The code and dataset are shared under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0). Please cite our paper if you use our code.
 ```
-@article{yoon2024hero,
-  title={HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims},
-  author={Yoon, Yejun and Jung, Jaeyoon and Yoon, Seunghyun and Park, Kunwoo},
-  journal={arXiv preprint arXiv:2410.12377},
-  year={2024}
+@inproceedings{yoon-etal-2024-hero,
+    title = "{H}er{O} at {AV}eri{T}e{C}: The Herd of Open Large Language Models for Verifying Real-World Claims",
+    author = "Yoon, Yejun  and
+      Jung, Jaeyoon  and
+      Yoon, Seunghyun  and
+      Park, Kunwoo",
+    booktitle = "Proceedings of the Seventh Fact Extraction and VERification Workshop (FEVER)",
+    month = nov,
+    year = "2024",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.fever-1.15",
+    pages = "130--136",
 }
 ```
