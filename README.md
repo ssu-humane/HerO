@@ -1,6 +1,8 @@
 # HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims
 
-This repository provides the code for our paper, titled ["HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims"](https://aclanthology.org/2024.fever-1.15/).
+This repository provides the code for HerO, the runner-up :runner: for the AveriTeC shared task. 
+
+The system description paper is published in the proceedings of the 7th FEVER workshop (co-located with EMNLP 2024) [[paper]](https://aclanthology.org/2024.fever-1.15/).
 
 ## Task: AVeriTeC
 
@@ -10,7 +12,7 @@ This repository provides the code for our paper, titled ["HerO at AVeriTeC: The 
 ## Method: HerO
 
 - HerO, the herd of open large language models for real-world claims, is our pipelined system for verifying real-world claims.
-- :trophy: Our system achieved 2nd place in the shared task! (the best system among those using open llms)
+- :trophy: Our system achieved 2nd place in the shared task! As the winner utilizes GPT-4o for their pipeline, HerO is the best one among those using open LLMs.
 <p align="center"><img src="https://github.com/user-attachments/assets/6cc0d0ea-78ec-4b84-b9cc-f905916dd972" width="900" height="400"></p>
 
 - The above figure illustrates our system's inference pipeline. We configure three modules using only open LLMs: evidence retrieval, question generation, and veracity prediction.
