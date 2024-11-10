@@ -12,12 +12,13 @@ This repository provides the code for our paper, titled ["HerO at AVeriTeC: The 
 - HerO, the herd of open large language models for real-world claims, is our pipelined system for verifying real-world claims.
 - :trophy: Our system achieved 2nd place in the shared task! (the best system among those using open llms)
 <p align="center"><img src="https://github.com/user-attachments/assets/6cc0d0ea-78ec-4b84-b9cc-f905916dd972" width="900" height="400"></p>
-- The above figure illustrates our system's inference pipeline. We configure three modules using only open LLMs to fact-check real-world claims in the AVeriTeC dataset: evidence retrieval, question generation, and veracity prediction.
+
+- The above figure illustrates our system's inference pipeline. We configure three modules using only open LLMs: evidence retrieval, question generation, and veracity prediction.
 
 
 #### The main features of the three modules
 
-- Evidence retrieval: We implement a 2-stage retrieval pipeline using BM25 and [SFR-Embedding-2_R](https://huggingface.co/Salesforce/SFR-Embedding-2_R). We expand the query by generating hypothetical fact-checking documents that rely on the LLM's parametric knowledge.
+- Evidence retrieval: We implement a 2-stage retrieval pipeline using BM25 and [SFR-Embedding-2_R](https://huggingface.co/Salesforce/SFR-Embedding-2_R). We expand the query by prompting an LLM to generate hypothetical fact-checking documents.
 - Question generation: We use an LLM to generate a verifying question for an answer candidate. We improve the baseline prompt by using the claim as an additional context.
 - Veracity prediction: We fully fine-tune an LLM to generate justifications and verdicts.
 
