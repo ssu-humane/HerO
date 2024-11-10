@@ -1,17 +1,17 @@
 # HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims
 
-This repository provides the code for our paper titled ["HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims"](https://aclanthology.org/2024.fever-1.15/).
+This repository provides the code for our paper, titled ["HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims"](https://aclanthology.org/2024.fever-1.15/).
 
 ## Task: AVeriTeC
 
 - The AVeriTeC task is to verify a real-world claim by retrieving evidence from the web. Given a claim and its metadata, a system needs to retrieve evidence that supports and/or refutes the claim, either from the Web or from the document collection provided along with the dataset.
-- This code is for our fact-checking pipeline that utilizes open large language models for the shared task hosted by the 7th FEVER workshop (co-located with EMNLP). For more details about the task and dataset, please refer to [the paper](https://proceedings.neurips.cc/paper_files/paper/2023/hash/cd86a30526cd1aff61d6f89f107634e4-Abstract-Datasets_and_Benchmarks.html) or [the website](https://fever.ai/task.html).
+- This code is for our fact-checking pipeline that utilizes open large language models for the shared task hosted by the 7th FEVER workshop (co-located with EMNLP). For more details about the task and dataset, please refer to [the shared task paper](https://aclanthology.org/2024.fever-1.1/).
 
 ## Method: HerO
 
-We present HerO, a herd of open large language models for verifying real-world claims.
+We present HerO, a herd of open large language models for verifying real-world claims. Our pipeline achieved 2nd place in the shared task!
 <p align="center"><img src="https://github.com/user-attachments/assets/6cc0d0ea-78ec-4b84-b9cc-f905916dd972" width="900" height="400"></p>
-This figure illustrates the inference pipeline of our system. We configure three modules using only open LLMs to fact-check real-world claims in the AVeriTeC dataset: evidence retrieval, question generation, and veracity prediction.
+This figure illustrates our system's inference pipeline. We configure three modules using only open LLMs to fact-check real-world claims in the AVeriTeC dataset: evidence retrieval, question generation, and veracity prediction.
 
 
 #### The main features of the three modules
