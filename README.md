@@ -76,7 +76,7 @@ python veracity_prediction.py --target_data "data_store/dev_top_k_qa.json" --out
 python averitec_evaluation.py --prediction_file "data_store/dev_veracity_prediction.json" --reference_file "data_store/averitec/dev.json"
 ```
 
-## Attribution
+## License \& Attribution
 
 The code and dataset are shared under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0).
 ```
