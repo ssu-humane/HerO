@@ -1,4 +1,5 @@
 # HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/hero-at-averitec-the-herd-of-open-large/fact-checking-on-averitec)](https://paperswithcode.com/sota/fact-checking-on-averitec?p=hero-at-averitec-the-herd-of-open-large)
 
 This repository provides the code for 🌟HerO🌟, the runner-up :runner: for the AveriTeC shared task. 
 
@@ -73,8 +74,10 @@ python veracity_prediction.py --target_data "data_store/dev_top_k_qa.json" --out
 
 ### Evaluation
 ```python3
-python averitec_evaluation.py --prediction_file "data_store/dev_veracity_prediction.json" --reference_file "data_store/averitec/dev.json"
+python averitec_evaluate.py --prediction_file "data_store/dev_veracity_prediction.json" --label_file "data_store/averitec/dev.json"
 ```
+
+> You can also evaluate using hidden test set at https://eval.ai/web/challenges/challenge-page/2285/overview
 
 ## License \& Attribution
 
