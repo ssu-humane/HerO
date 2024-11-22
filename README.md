@@ -21,6 +21,21 @@ The system description paper is published in the proceedings of the 7th FEVER wo
   + Question generation: We use an LLM to generate a verifying question for an answer candidate. We improve the baseline prompt by using the claim as an additional context.
   + Veracity prediction: We fully fine-tune an LLM to generate justifications and verdicts.
 
+## Veracity Prediction Model and Fine-tuning Dataset
+The model checkpoints and instruction datasets are available at Hugging Face Hub 🤗
+
+### Veracity Prediction Model Checkpoints
+We fine-tune the 8b model and the 70b model for veracity prediction.
+
+- [humane-lab/Meta-Llama-3.1-8B-HerO](https://huggingface.co/humane-lab/Meta-Llama-3.1-8B-HerO) is our fine-tuned 8b model for veracity prediction and justification generation. We use Meta-Llama-3.1-8B for the base model.
+
+- [humane-lab/Meta-Llama-3.1-70B-HerO](https://huggingface.co/humane-lab/Meta-Llama-3.1-70B-HerO) is our fine-tuned 70b model for veracity prediction and justification generation. We use Meta-Llama-3.1-70B as the base model.
+
+### Fine-tuning Dataset
+We created our fine-tuning dataset using our own prompts along with AVeriTeC justifications and verdicts to train the veracity prediction model
+
+- [humane-lab/AVeriTeC-HerO](https://huggingface.co/datasets/humane-lab/AVeriTeC-HerO) is our training dataset for the veraity prediction and justification generation model. We modify the [AVeriTeC dataset](https://huggingface.co/chenxwh/AVeriTeC) to be used for instruction training.
+
 ## How to Run
 
 ### Installation
@@ -29,16 +44,8 @@ git clone https://github.com/ssu-humane/HerO.git
 cd HerO
 pip install -r requirements.txt
 ```
-### Model Checkpoints
-We use the 8b model for question generation and the 70b model for veracity prediction. The model checkpoints and instruction datasets are available at Hugging Face Hub 🤗
 
-- [humane-lab/AVeriTeC-HerO](https://huggingface.co/datasets/humane-lab/AVeriTeC-HerO) is our training dataset for the veraity prediction and justification generation model. We modify the [AVeriTeC dataset](https://huggingface.co/chenxwh/AVeriTeC) to be used for instruction training.
-
-- [humane-lab/Meta-Llama-3.1-8B-HerO](https://huggingface.co/humane-lab/Meta-Llama-3.1-8B-HerO) is our fine-tuned 8b model for veracity prediction and justification generation. We use Meta-Llama-3.1-8B for the base model.
-
-- [humane-lab/Meta-Llama-3.1-70B-HerO](https://huggingface.co/humane-lab/Meta-Llama-3.1-70B-HerO) is our fine-tuned 70b model for veracity prediction and justification generation. We use Meta-Llama-3.1-70B as the base model.
-
-### Data Preparation
+### AVeriTeC Data Preparation
 Download the AVeriTeC dataset and place it in the `data_store/averitec` directory. More details can be found in the [data_store/averitec/README.md](https://github.com/ssu-humane/HerO/tree/main/data_store/averitec)
 
 ### Evidence retrieval
