@@ -1,5 +1,5 @@
 # HerO at AVeriTeC: The Herd of Open Large Language Models for Verifying Real-World Claims
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/hero-at-averitec-the-herd-of-open-large/fact-checking-on-averitec)](https://paperswithcode.com/sota/fact-checking-on-averitec?p=hero-at-averitec-the-herd-of-open-large) [![arXiv](https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg?style=flat)](https://arxiv.org/abs/2410.12377)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/hero-at-averitec-the-herd-of-open-large/fact-checking-on-averitec)](https://paperswithcode.com/sota/fact-checking-on-averitec?p=hero-at-averitec-the-herd-of-open-large) [![arXiv](https://img.shields.io/badge/arXiv-2410.12377-b31b1b.svg?style=flat)](https://arxiv.org/abs/2410.12377)
 
 This repository provides the code for 🌟HerO🌟, the runner-up :runner: for the AveriTeC shared task. 
 
